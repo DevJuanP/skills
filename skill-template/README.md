@@ -8,7 +8,7 @@ repo `agentskills/agentskills`, originalmente Anthropic) + patrones prácticos d
 
 ```text
 skill-template/
-  SKILL.md                  # plantilla completa con TODOs (frontmatter válido + cuerpo)
+  SKILL.template.md         # plantilla completa con TODOs (renómbrala a SKILL.md al copiar)
   references/
     REFERENCE.md            # detalle cargado bajo demanda (borrar si no hace falta)
     EXAMPLES.md             # ejemplos 3..N (en SKILL.md solo van 2)
@@ -18,10 +18,14 @@ skill-template/
     .gitkeep                # plantillas/recursos de salida (no se cargan al contexto)
 ```
 
+> El archivo se llama `SKILL.template.md` (no `SKILL.md`) a propósito: así el CLI
+> `npx skills` no lo detecta como skill real y skills.sh no lo indexa.
+
 ## Cómo crear una skill nueva
 
 ```bash
 cp -r skill-template skills/mi-skill
+mv skills/mi-skill/SKILL.template.md skills/mi-skill/SKILL.md
 # 1. Renombra la carpeta == `name:` del frontmatter (kebab-case, 1-64 chars)
 # 2. En skills/mi-skill/SKILL.md reemplaza todos los TODO
 # 3. Borra secciones/archivos que no necesites (mínimo: frontmatter + Instructions + 1 ejemplo)
